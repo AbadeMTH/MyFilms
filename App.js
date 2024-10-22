@@ -1,12 +1,12 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React from "react"
+import { SafeAreaView, StatusBar } from "react-native"
+import { HomeScreen } from "./src/screens/homeScreen"
 
 export default function App() {
-  return(
-    <View>
-      <Text>
-        Olá, Mundo
-      </Text>
-    </View>
-  )
+    return (
+        <SafeAreaView style={{ flex: 1 }}>
+            <StatusBar />
+            <HomeScreen />
+        </SafeAreaView>
+    )
 }
