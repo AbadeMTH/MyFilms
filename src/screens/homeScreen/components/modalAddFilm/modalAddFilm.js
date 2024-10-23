@@ -1,15 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { stylesModalAddFilm as styles } from "./style"
 import { PickerRate } from "./components/pickerRate/pickerRate"
 
-export function ModalAddFilm({ closeModal }) {
+export function ModalAddFilm({ closeModal, _film, _notes, _rating, _time }){
+    const [film, setFilm] = useState(_film || '')
+    const [notes, setNotes] = useState(_notes || '')
+    const [rating, setRating] = useState(_rating || 0)
+    const [time, setTime] = useState(_time || '')
     async function saveData() {
         //TODO: ADD DATA TO STATE
         Alert.alert("Filme adicionado com sucesso!")
         closeModal()
     }
-    //TODO: ADD HATE INPUT
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -19,28 +22,34 @@ export function ModalAddFilm({ closeModal }) {
                         <Text style={styles.labelInput}>Nome do Filme</Text>
                         <TextInput
                             style={styles.input}
-                            placeholder="Digite aqui..."
+                            placeholder="Filme..."
                             placeholderTextColor={"#DBD3D3"}
+                            value={film}
+                            onChangeText={(value) => setFilm(value)}
                         />
                     </View>
                     <View>
                         <Text style={styles.labelInput}>Anotação</Text>
                         <TextInput
                             style={styles.input}
-                            placeholder="Digite aqui uma anotação, caso tenha..."
+                            placeholder="Anotações..."
                             placeholderTextColor={"#DBD3D3"}
+                            value={notes}       
+                            onChangeText={(value) => setNotes(value)}
                         />
                     </View>
                     <View>
                         <Text style={styles.labelInput}>Avaliação</Text>
-                        <PickerRate />
+                        <PickerRate value={rating} onChange={(value) => setRating(value)} />
                     </View>
                     <View>
                         <Text style={styles.labelInput}>Tempo de Pause</Text>
                         <TextInput
                             style={styles.input}
-                            placeholder="Digite aqui o momento de pause..."
+                            placeholder="00:00"
                             placeholderTextColor={"#DBD3D3"}
+                            value={time}
+                            onChangeText={(value) => setTime(value)}
                         />
                     </View>
                 </View>

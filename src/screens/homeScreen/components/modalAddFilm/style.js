@@ -38,6 +38,7 @@ export const stylesModalAddFilm = StyleSheet.create({
         paddingHorizontal: 15, // Espaçamento lateral
         paddingTop: 10, // Espaçamento superior
         paddingBottom: 10, // Espaçamento inferior
+        color: "#fff",
     },
     inputContainer: {
         flex: 1,

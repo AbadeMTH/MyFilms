@@ -2,9 +2,9 @@ import { StyleSheet } from "react-native"
 
 export const stylesCard = StyleSheet.create({
     card: {
-        width: "90%",
+        width: "140%",
         backgroundColor: "#024CAA",
-        marginTop: 32,
+        marginTop: 16,
         marginBottom: 16,
         borderRadius: 36,
         elevation: 6,
@@ -13,7 +13,6 @@ export const stylesCard = StyleSheet.create({
         backgroundColor: "#091057",
         borderTopLeftRadius: 36,
         borderTopRightRadius: 36,
-        width: "100%",
         alignItems: "center",
         justifyContent: "center",
         height: 60,
@@ -30,16 +29,6 @@ export const stylesCard = StyleSheet.create({
         top: 20,
         opacity: 0.5
     },
-    cardContentNotes: {
-        backgroundColor: "#024CAA",
-        borderBottomLeftRadius: 36,
-        borderBottomRightRadius: 36,
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 30,
-        paddingBottom: 10,
-        justifyContent: "space-between",
-    },
     cardContent: {
         backgroundColor: "#024CAA",
         borderBottomLeftRadius: 36,
@@ -54,14 +43,7 @@ export const stylesCard = StyleSheet.create({
         color: "#fff",
         fontSize: 12,
         fontWeight: "bold",
-    },
-    rating: {
-        textAlign: "center",
-        fontSize: 16,
-        color: "#fff",
-        fontWeight: "bold",
-        marginBottom: 35,
-        marginTop: 35,
+        marginTop: 15,
     },
     footer: {
         justifyContent: "center",

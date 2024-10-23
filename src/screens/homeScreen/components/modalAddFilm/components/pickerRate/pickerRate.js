@@ -3,16 +3,15 @@ import React, { useState } from "react"
 import { View } from "react-native"
 import { stylesPickerRate as styles } from "./style"
 
-export function PickerRate() {
-    const [selectedRate, setSelectedRate] = useState()
+export function PickerRate({value, onChange}) {
 
     return (
         <View style={styles.pickerContainer}>
             <Picker
                 dropdownIconColor={"#EC8305"}
                 style={styles.picker}
-                selectedValue={selectedRate}
-                onValueChange={(itemValue) => setSelectedRate(itemValue)}
+                selectedValue={value}
+                onValueChange={onChange}
             >
                 <Picker.Item label="0 estrelas" value={0} />
                 <Picker.Item label="0.5 estrela" value={0.5} />

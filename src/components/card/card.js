@@ -6,8 +6,8 @@ import Feather from "@expo/vector-icons/Feather"
 
 export function Card({
     film,
-    notes = "Nenhuma",
-    rating = "Sem avaliação",
+    notes = 'Nenhuma anotação',
+    rating,
     time,
     onPress,
 }) {
@@ -23,27 +23,16 @@ export function Card({
                 />
             </View>
 
-            {notes ? (
-                <View style={styles.cardContentNotes}>
+                <View style={styles.cardContent}>
                     <Text style={styles.notes}>Anotações: {notes}</Text>
-
+                    
                     <Rating ratingValue={rating} />
                     <View style={styles.footer}>
                         <Text style={styles.timeText}>Tempo de Pausa</Text>
                         <Text style={styles.time}>{time}</Text>
                     </View>
                 </View>
-            ) : (
-                <View style={styles.cardContent}>
-                    <View style={{ marginTop: 10 }}>
-                        <Rating ratingValue={rating} />
-                    </View>
-                    <View style={styles.footer}>
-                        <Text style={styles.timeText}>Tempo de Pausa</Text>
-                        <Text style={styles.time}>{time}</Text>
-                    </View>
-                </View>
-            )}
+
         </TouchableOpacity>
     )
 }

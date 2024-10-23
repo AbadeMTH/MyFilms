@@ -1,20 +1,32 @@
 import React, { useState } from "react"
-import { Modal, ScrollView, Text, View } from "react-native"
+import { FlatList, Modal, ScrollView, Text, View } from "react-native"
 import { stylesHomeScreen as styles } from "./style"
 import { Header } from "./components/header/header"
 import { Card } from "../../components/card/card"
 import { AddCard } from "../../components/addCard/addCard"
 import { ModalAddFilm } from "./components/modalAddFilm/modalAddFilm"
+import { filmList } from "../../data/mockup"
 
 export function HomeScreen() {
     const [modalVisible, setModalVisible] = useState(false)
+    const [selectedFilm, setSelectedFilm] = useState(null)
 
     function addFilm() {
+        setSelectedFilm(null)
         setModalVisible(true)
     }
 
-    function editFilm() {
+    function editFilm(filmData) {
+        setSelectedFilm(filmData)
         setModalVisible(true)
+    }
+
+    function renderItem({item}){
+        return <Card
+        filmList={filmList}
+        onPress={() => editFilm(item)}
+        {...item}
+    />
     }
 
     return (
@@ -33,25 +45,13 @@ export function HomeScreen() {
                 />
             </View>
 
-            <View style={{ flex: 1, width: "100%" }}>
-                <ScrollView
-                    contentContainerStyle={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <Card
-                        film={"The Matrix"}
-                        onPress={editFilm}
-                        rating={0.5}
-                        notes={"a"}
-                        tempo={"20 min"}
-                    />
-                    <Card film={"The Lorax"} rating={4.5} tempo={"20 min"} />
-                    <Card film={"The Lorax"} tempo={"20 min"} />
-                    <Card film={"The Lorax"} rating={3} tempo={"20 min"} />
-                </ScrollView>
-            </View>
+            <FlatList
+                style={{ width: '100%', paddingRight: 10, paddingLeft: 10 }}
+                contentContainerStyle={{alignItems: "center" }}
+                data={filmList}
+                keyExtractor={filmList.film}
+                renderItem={renderItem}
+            />
 
             <AddCard onPress={addFilm} />
 
@@ -62,8 +62,13 @@ export function HomeScreen() {
             >
                 <ModalAddFilm
                     closeModal={() => {
+                        setSelectedFilm(null)
                         setModalVisible(false)
                     }}
+                    _film={selectedFilm?.film}
+                    _notes={selectedFilm?.notes}
+                    _rating={selectedFilm?.rating}
+                    _time={selectedFilm?.time}
                 />
             </Modal>
         </View>
