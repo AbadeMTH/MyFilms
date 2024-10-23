@@ -6,13 +6,14 @@ import Feather from "@expo/vector-icons/Feather"
 
 export function Card({
     film,
-    notes = 'Nenhuma anotação',
+    notes,
     rating,
     time,
     onPress,
+    onLongPress,
 }) {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.card}>
+        <TouchableOpacity onPress={onPress} onLongPress={onLongPress} style={styles.card}>
             <View style={styles.cardHeader}>
                 <Text style={styles.filmText}>{film}</Text>
                 <Feather

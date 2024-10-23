@@ -1,15 +1,18 @@
-import React, { useState } from "react"
-import { FlatList, Modal, ScrollView, Text, View } from "react-native"
+import React, { useEffect, useState } from "react"
+import { Alert, FlatList, Modal, Text, View } from "react-native"
 import { stylesHomeScreen as styles } from "./style"
 import { Header } from "./components/header/header"
 import { Card } from "../../components/card/card"
 import { AddCard } from "../../components/addCard/addCard"
 import { ModalAddFilm } from "./components/modalAddFilm/modalAddFilm"
-import { filmList } from "../../data/mockup"
+import useStorage from "../../hooks/useStorage"
+import { useIsFocused } from "@react-navigation/native"
 
 export function HomeScreen() {
     const [modalVisible, setModalVisible] = useState(false)
     const [selectedFilm, setSelectedFilm] = useState(null)
+    const [filmList, setFilmList] = useState(filmList)
+    const { getFilm, removeFilm } = useStorage()
 
     function addFilm() {
         setSelectedFilm(null)
@@ -21,12 +24,45 @@ export function HomeScreen() {
         setModalVisible(true)
     }
 
-    function renderItem({item}){
-        return <Card
-        filmList={filmList}
-        onPress={() => editFilm(item)}
-        {...item}
-    />
+    async function deleteFilm(film) {
+        Alert.alert("Deletar Filme", "Deseja excluir este Filme?", [
+            { text: "Cancelar", style: "cancel" },
+            {
+                text: "Sim",
+                style: "default",
+                onPress: async () => {
+                    const films = await removeFilm("@films", film)
+                    if (films) {
+                        setFilmList(films)
+                    } else {
+                        setFilmList([])
+                    }
+                },
+            },
+        ])
+    }
+
+    useEffect(() => {
+        async function loadFilms() {
+            const films = await getFilm("@films")
+            if (films) {
+                setFilmList(films)
+            } else {
+                setFilmList([])
+            }
+        }
+        loadFilms()
+        console.log(filmList)
+    }, [])
+
+    function renderItem({ item }) {
+        return (
+            <Card
+                onLongPress={() => deleteFilm(item)}
+                onPress={() => editFilm(item)}
+                {...item}
+            />
+        )
     }
 
     return (
@@ -46,10 +82,10 @@ export function HomeScreen() {
             </View>
 
             <FlatList
-                style={{ width: '100%', paddingRight: 10, paddingLeft: 10 }}
-                contentContainerStyle={{alignItems: "center" }}
+                style={{ width: "100%", paddingRight: 10, paddingLeft: 10 }}
+                contentContainerStyle={{ alignItems: "center" }}
                 data={filmList}
-                keyExtractor={filmList.film}
+                keyExtractor={(item) => String(item.id)}
                 renderItem={renderItem}
             />
 
