@@ -20,7 +20,7 @@ export function Rating({ ratingValue }) {
         //Render half star if needed (if ratingValue is not a whole number)
         if (hasHalfStar) {
             stars.push(
-                <FontAwesome name="star-half-full" size={24} color="yellow" />
+                <FontAwesome name="star-half-full" size={24} color="yellow" key={hasHalfStar} />
             )
         }
 

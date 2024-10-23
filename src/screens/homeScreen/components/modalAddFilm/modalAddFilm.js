@@ -1,9 +1,10 @@
 import React from "react"
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { stylesModalAddFilm as styles } from "./style"
+import { PickerRate } from "./components/pickerRate/pickerRate"
 
 export function ModalAddFilm({ closeModal }) {
-    async function saveData(){
+    async function saveData() {
         //TODO: ADD DATA TO STATE
         Alert.alert("Filme adicionado com sucesso!")
         closeModal()
@@ -32,11 +33,7 @@ export function ModalAddFilm({ closeModal }) {
                     </View>
                     <View>
                         <Text style={styles.labelInput}>Avaliação</Text>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Digite sua nota de 1 a 5..."
-                            placeholderTextColor={"#DBD3D3"}
-                        />
+                        <PickerRate />
                     </View>
                     <View>
                         <Text style={styles.labelInput}>Tempo de Pause</Text>
@@ -47,19 +44,31 @@ export function ModalAddFilm({ closeModal }) {
                         />
                     </View>
                 </View>
-                <View
-                    style={styles.buttonsContainer}
-                >
-                        <TouchableOpacity style={styles.button} onPress={saveData}>
-                            <Text style={[styles.buttonText, {backgroundColor: 'green'}]}>Salvar</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={closeModal}
+                <View style={styles.buttonsContainer}>
+                    <TouchableOpacity style={styles.button} onPress={saveData}>
+                        <Text
+                            style={[
+                                styles.buttonText,
+                                { backgroundColor: "green" },
+                            ]}
                         >
-                            <Text style={[styles.buttonText, {backgroundColor: 'red'}]}>Fechar</Text>
-                        </TouchableOpacity>
+                            Salvar
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={closeModal}
+                    >
+                        <Text
+                            style={[
+                                styles.buttonText,
+                                { backgroundColor: "red" },
+                            ]}
+                        >
+                            Fechar
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>

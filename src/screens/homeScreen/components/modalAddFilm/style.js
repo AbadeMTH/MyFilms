@@ -21,13 +21,13 @@ export const stylesModalAddFilm = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 10,
         textAlign: "center",
-        color: "#DBD3D3",
+        color: "#fff",
     },
     labelInput: {
         fontSize: 14,
         fontWeight: "bold",
         marginBottom: 6,
-        color: "#DBD3D3",
+        color: "#fff",
     },
     input: {
         borderWidth: 2,
@@ -52,7 +52,7 @@ export const stylesModalAddFilm = StyleSheet.create({
     buttonText: {
         fontSize: 16,
         fontWeight: "bold",
-        color: "#DBD3D3",
+        color: "#fff",
         backgroundColor: "#091057",
         width: "100%",
         textAlign: "center",
@@ -63,4 +63,5 @@ export const stylesModalAddFilm = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-evenly",
     },
+
 })
