@@ -17,13 +17,19 @@ export const stylesCard = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         height: 60,
+        flexDirection: "row",
     },
     filmText: {
         fontSize: 20,
         fontWeight: "bold",
         color: "#fff",
     },
-
+    editIcon: {
+        position: "absolute",
+        right: 20,
+        top: 20,
+        opacity: 0.5
+    },
     cardContentNotes: {
         backgroundColor: "#024CAA",
         borderBottomLeftRadius: 36,
