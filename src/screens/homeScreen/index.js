@@ -9,9 +9,14 @@ import { ModalAddFilm } from "./components/modalAddFilm/modalAddFilm"
 export function HomeScreen() {
     const [modalVisible, setModalVisible] = useState(false)
 
-    function addFilm(){
-        setModalVisible(true);
+    function addFilm() {
+        setModalVisible(true)
     }
+
+    function editFilm() {
+        setModalVisible(true)
+    }
+
     return (
         <View style={styles.container}>
             <Header />
@@ -29,13 +34,19 @@ export function HomeScreen() {
             </View>
 
             <View style={{ flex: 1, width: "100%" }}>
-                <ScrollView                     
+                <ScrollView
                     contentContainerStyle={{
                         justifyContent: "center",
                         alignItems: "center",
                     }}
                 >
-                    <Card film={"The Matrix"} rating={0.5} notes={"a"} tempo={"20 min"} />
+                    <Card
+                        film={"The Matrix"}
+                        onPress={editFilm}
+                        rating={0.5}
+                        notes={"a"}
+                        tempo={"20 min"}
+                    />
                     <Card film={"The Lorax"} rating={4.5} tempo={"20 min"} />
                     <Card film={"The Lorax"} tempo={"20 min"} />
                     <Card film={"The Lorax"} rating={3} tempo={"20 min"} />
@@ -44,8 +55,16 @@ export function HomeScreen() {
 
             <AddCard onPress={addFilm} />
 
-            <Modal visible={modalVisible} animationType="fade" transparent={true}>
-                <ModalAddFilm closeModal={() => {setModalVisible(false)}}/>
+            <Modal
+                visible={modalVisible}
+                animationType="fade"
+                transparent={true}
+            >
+                <ModalAddFilm
+                    closeModal={() => {
+                        setModalVisible(false)
+                    }}
+                />
             </Modal>
         </View>
     )
