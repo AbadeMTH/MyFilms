@@ -3,8 +3,11 @@ import { StyleSheet } from "react-native"
 export const stylesCard = StyleSheet.create({
     card: {
         width: "90%",
+        backgroundColor: "#024CAA",
         marginTop: 32,
         marginBottom: 16,
+        borderRadius: 36,
+        elevation: 10,
     },
     cardHeader: {
         backgroundColor: "#091057",
@@ -22,9 +25,7 @@ export const stylesCard = StyleSheet.create({
     },
 
     cardContentNotes: {
-        marginTop: -1,
         backgroundColor: "#024CAA",
-        opacity: 0.8,
         borderBottomLeftRadius: 36,
         borderBottomRightRadius: 36,
         paddingLeft: 20,
@@ -34,16 +35,13 @@ export const stylesCard = StyleSheet.create({
         justifyContent: "space-between",
     },
     cardContent: {
-        marginTop: -1,
         backgroundColor: "#024CAA",
-        opacity: 0.8,
         borderBottomLeftRadius: 36,
         borderBottomRightRadius: 36,
         justifyContent: "center",
         alignContent: "center",
         paddingLeft: 20,
         paddingRight: 20,
-
         paddingBottom: 10,
     },
     notes: {
@@ -57,12 +55,12 @@ export const stylesCard = StyleSheet.create({
         color: "#fff",
         fontWeight: "bold",
         marginBottom: 35,
-        marginTop: 35
+        marginTop: 35,
     },
     footer: {
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 15
+        marginBottom: 15,
     },
     timeText: {
         color: "#fff",
