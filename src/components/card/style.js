@@ -7,7 +7,7 @@ export const stylesCard = StyleSheet.create({
         marginTop: 32,
         marginBottom: 16,
         borderRadius: 36,
-        elevation: 10,
+        elevation: 6,
     },
     cardHeader: {
         backgroundColor: "#091057",
