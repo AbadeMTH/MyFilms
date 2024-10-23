@@ -24,7 +24,6 @@ export const stylesCard = StyleSheet.create({
     cardContentNotes: {
         marginTop: -1,
         backgroundColor: "#024CAA",
-        height: 150,
         opacity: 0.8,
         borderBottomLeftRadius: 36,
         borderBottomRightRadius: 36,
@@ -37,23 +36,33 @@ export const stylesCard = StyleSheet.create({
     cardContent: {
         marginTop: -1,
         backgroundColor: "#024CAA",
-        height: 75,
         opacity: 0.8,
         borderBottomLeftRadius: 36,
         borderBottomRightRadius: 36,
         justifyContent: "center",
         alignContent: "center",
+        paddingLeft: 20,
+        paddingRight: 20,
+
+        paddingBottom: 10,
     },
     notes: {
         color: "#fff",
         fontSize: 12,
         fontWeight: "bold",
-        marginBottom: 10,
-        height: 64,
+    },
+    rating: {
+        textAlign: "center",
+        fontSize: 16,
+        color: "#fff",
+        fontWeight: "bold",
+        marginBottom: 35,
+        marginTop: 35
     },
     footer: {
         justifyContent: "center",
         alignItems: "center",
+        marginBottom: 15
     },
     timeText: {
         color: "#fff",

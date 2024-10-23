@@ -35,14 +35,16 @@ export function HomeScreen() {
                         alignItems: "center",
                     }}
                 >
-                    <Card film={"The Matrix"} notes={"a"} tempo={"20 min"} />
-                    <Card film={"The Lorax"} tempo={"20 min"} />
-                    <Card film={"The Matrix"} notes={"a"} tempo={"20 min"} />
-                    <Card film={"The Lorax"} tempo={"20 min"} />
-                    <Card film={"The Matrix"} notes={"a"} tempo={"20 min"} />
-                    <Card film={"The Lorax"} tempo={"20 min"} />
-                    <Card film={"The Matrix"} notes={"a"} tempo={"20 min"} />
-                    <Card film={"The Lorax"} tempo={"20 min"} />
+                    <Card film={"The Matrix"} rating={'***'} notes={"a"} tempo={"20 min"} />
+                    <Card film={"The Lorax"} rating={'*'} tempo={"20 min"} />
+                    <Card film={"The Matrix"} rating={'***'} notes={"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"} tempo={"20 min"} />
+                    <Card film={"The Lorax"} rating={'*'} tempo={"20 min"} />
+                    <Card film={"The Matrix"} rating={'**'} notes={"a"} tempo={"20 min"} />
+                    <Card film={"The Lorax"} rating={'***'} tempo={"20 min"} />
+                    <Card film={"The Matrix"} rating={'*****'} notes={"a"} tempo={"20 min"} />
+                    <Card film={"The Lorax"} rating={'***'} tempo={"20 min"} />
+                    <Card film={"The Matrix"} rating={'**'} notes={"a"} tempo={"20 min"} />
+                    <Card film={"The Lorax"} rating={'***'} tempo={"20 min"} />
                 </ScrollView>
             </View>
 
