@@ -3,6 +3,7 @@ import { ScrollView, Text, View } from "react-native"
 import { stylesHomeScreen as styles } from "./style"
 import { Header } from "./components/header/header"
 import { Card } from "../../components/card/card"
+import { AddCard } from "../../components/addCard/addCard"
 
 export function HomeScreen() {
     return (
@@ -16,7 +17,7 @@ export function HomeScreen() {
                         width: "100%",
                         backgroundColor: "#000",
                         height: 1,
-                        marginBottom: 16
+                        marginBottom: 16,
                     }}
                 />
             </View>
@@ -30,8 +31,16 @@ export function HomeScreen() {
                 >
                     <Card film={"The Matrix"} notes={"a"} tempo={"20 min"} />
                     <Card film={"The Lorax"} tempo={"20 min"} />
+                    <Card film={"The Matrix"} notes={"a"} tempo={"20 min"} />
+                    <Card film={"The Lorax"} tempo={"20 min"} />
+                    <Card film={"The Matrix"} notes={"a"} tempo={"20 min"} />
+                    <Card film={"The Lorax"} tempo={"20 min"} />
+                    <Card film={"The Matrix"} notes={"a"} tempo={"20 min"} />
+                    <Card film={"The Lorax"} tempo={"20 min"} />
                 </ScrollView>
             </View>
+
+            <AddCard />
         </View>
     )
 }
