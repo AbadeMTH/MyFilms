@@ -12,7 +12,7 @@ export function Rating({ ratingValue }) {
         const totalRenderStars = fullStars + (hasHalfStar ? 1 : 0) //1 = True / 0 = False
 
         //Render full stars
-        if (ratingValue > 0 && fullStars < totalStars) {
+        if (ratingValue > 0) {
             for (let i = 0; i < fullStars; i++) {
                 stars.push(
                     <FontAwesome name="star" size={24} color="yellow" key={i} />

@@ -4,32 +4,53 @@ import { stylesModalAddFilm as styles } from "./style"
 import { PickerRate } from "./components/pickerRate/pickerRate"
 import useStorage from "../../../../hooks/useStorage"
 
-export function ModalAddFilm({ closeModal, _film, _notes, _rating, _time }) {
+export function ModalAddFilm({
+    closeModal,
+    _id,
+    _film,
+    _notes,
+    _rating,
+    _time,
+    isEditable = false,
+}) {
+    const [id, setId] = useState(_id || 0)
     const [film, setFilm] = useState(_film || "")
     const [notes, setNotes] = useState(_notes || "")
     const [rating, setRating] = useState(_rating || 0)
     const [time, setTime] = useState(_time || "")
-    const { saveFilm } = useStorage()
+    const { saveFilm, updateFilm } = useStorage()
     async function saveData({ film, notes, rating, time }) {
-        //TODO: ADD DATA TO STATE
-        saveFilm('@films',{
+        saveFilm("@films", {
             id: Math.random().toString(36).substr(2, 9),
-            film,
-            notes,
-            rating,
-            time,
+            film: film,
+            notes: notes,
+            rating: rating,
+            time: time,
+        })
+        closeModal()
+    }
+
+    async function updateData({ id, film, notes, rating, time }) {
+        updateFilm("@films", {
+            id: id,
+            film: film,
+            notes: notes,
+            rating: rating,
+            time: time,
         })
         closeModal()
     }
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text style={styles.title}>Adicionar Filme</Text>
+                <Text style={styles.title}>{isEditable ? 'Atualizar Filme' : 'Adicionar Filme'}</Text>
                 <View style={styles.inputContainer}>
                     <View>
                         <Text style={styles.labelInput}>Nome do Filme</Text>
                         <TextInput
                             style={styles.input}
+                            autoCorrect={true}
+                            autoCapitalize="sentences"
                             placeholder="Filme..."
                             placeholderTextColor={"#DBD3D3"}
                             value={film}
@@ -65,16 +86,39 @@ export function ModalAddFilm({ closeModal, _film, _notes, _rating, _time }) {
                     </View>
                 </View>
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity style={styles.button} onPress={saveData}>
-                        <Text
-                            style={[
-                                styles.buttonText,
-                                { backgroundColor: "green" },
-                            ]}
+                    {isEditable ? (
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() =>
+                                updateData({ id, film, notes, rating, time })
+                            }
                         >
-                            Salvar
-                        </Text>
-                    </TouchableOpacity>
+                            <Text
+                                style={[
+                                    styles.buttonText,
+                                    { backgroundColor: "green" },
+                                ]}
+                            >
+                                Salvar Alterações
+                            </Text>
+                        </TouchableOpacity>
+                    ) : (
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() =>
+                                saveData({ film, notes, rating, time })
+                            }
+                        >
+                            <Text
+                                style={[
+                                    styles.buttonText,
+                                    { backgroundColor: "green" },
+                                ]}
+                            >
+                                Salvar
+                            </Text>
+                        </TouchableOpacity>
+                    )}
 
                     <TouchableOpacity
                         style={styles.button}

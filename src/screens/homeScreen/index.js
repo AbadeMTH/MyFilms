@@ -6,13 +6,14 @@ import { Card } from "../../components/card/card"
 import { AddCard } from "../../components/addCard/addCard"
 import { ModalAddFilm } from "./components/modalAddFilm/modalAddFilm"
 import useStorage from "../../hooks/useStorage"
-import { useIsFocused } from "@react-navigation/native"
 
 export function HomeScreen() {
     const [modalVisible, setModalVisible] = useState(false)
     const [selectedFilm, setSelectedFilm] = useState(null)
-    const [filmList, setFilmList] = useState(filmList)
+    const [modalEditable, setModalEditable] = useState(false)
+    const [filmList, setFilmList] = useState([])
     const { getFilm, removeFilm } = useStorage()
+    const [updateFlag, setUpdateFlag] = useState(false)
 
     function addFilm() {
         setSelectedFilm(null)
@@ -21,6 +22,7 @@ export function HomeScreen() {
 
     function editFilm(filmData) {
         setSelectedFilm(filmData)
+        setModalEditable(true)
         setModalVisible(true)
     }
 
@@ -37,6 +39,7 @@ export function HomeScreen() {
                     } else {
                         setFilmList([])
                     }
+                    setUpdateFlag((prev) => !prev)
                 },
             },
         ])
@@ -47,13 +50,11 @@ export function HomeScreen() {
             const films = await getFilm("@films")
             if (films) {
                 setFilmList(films)
-            } else {
-                setFilmList([])
             }
         }
         loadFilms()
-        console.log(filmList)
-    }, [])
+        console.log({filmList })
+    }, [updateFlag])
 
     function renderItem({ item }) {
         return (
@@ -99,12 +100,18 @@ export function HomeScreen() {
                 <ModalAddFilm
                     closeModal={() => {
                         setSelectedFilm(null)
+                        setModalEditable(false)
                         setModalVisible(false)
+                        setTimeout(() => {
+                            setUpdateFlag((prev) => !prev)
+                        }, 300);
                     }}
+                    _id={selectedFilm?.id}
                     _film={selectedFilm?.film}
                     _notes={selectedFilm?.notes}
                     _rating={selectedFilm?.rating}
                     _time={selectedFilm?.time}
+                    isEditable={modalEditable}
                 />
             </Modal>
         </View>

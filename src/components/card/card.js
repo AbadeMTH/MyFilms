@@ -15,7 +15,8 @@ export function Card({
     return (
         <TouchableOpacity onPress={onPress} onLongPress={onLongPress} style={styles.card}>
             <View style={styles.cardHeader}>
-                <Text style={styles.filmText}>{film}</Text>
+                <Text style={styles.filmText}>{film ? film : 'Sem nome'}</Text>
+                
                 <Feather
                     name="edit"
                     size={16}
@@ -25,12 +26,16 @@ export function Card({
             </View>
 
                 <View style={styles.cardContent}>
-                    <Text style={styles.notes}>Anotações: {notes}</Text>
+                    <Text style={styles.notes}>Anotações: {notes ? notes : 'Sem notas'}</Text>
                     
                     <Rating ratingValue={rating} />
                     <View style={styles.footer}>
-                        <Text style={styles.timeText}>Tempo de Pausa</Text>
-                        <Text style={styles.time}>{time}</Text>
+                        
+                        {time ? (<>
+                            <Text style={styles.timeText}>Tempo de Pausa</Text>
+                            <Text style={styles.time}>{time ? time : '00:00'}</Text>
+                        </>) : <></>}
+                        
                     </View>
                 </View>
 
