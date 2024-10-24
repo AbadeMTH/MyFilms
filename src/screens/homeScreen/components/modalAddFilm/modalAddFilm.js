@@ -41,6 +41,7 @@ export function ModalAddFilm({
         closeModal()
     }
     return (
+        //TODO: arrumar teclado bugando a modal
         <View style={styles.container}>
             <View style={styles.content}>
                 <Text style={styles.title}>{isEditable ? 'Atualizar Filme' : 'Adicionar Filme'}</Text>
