@@ -1,5 +1,12 @@
 import React, { useState } from "react"
-import { Text, TextInput, TouchableOpacity, View } from "react-native"
+import {
+    Alert,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from "react-native"
 import { stylesModalAddFilm as styles } from "./style"
 import { PickerRate } from "./components/pickerRate/pickerRate"
 import useStorage from "../../../../hooks/useStorage"
@@ -18,7 +25,7 @@ export function ModalAddFilm({
     const [notes, setNotes] = useState(_notes || "")
     const [rating, setRating] = useState(_rating || 0)
     const [time, setTime] = useState(_time || "")
-    const { saveFilm, updateFilm } = useStorage()
+    const { saveFilm, updateFilm, removeFilm } = useStorage()
     async function saveData({ film, notes, rating, time }) {
         saveFilm("@films", {
             id: Math.random().toString(36).substr(2, 9),
@@ -40,12 +47,30 @@ export function ModalAddFilm({
         })
         closeModal()
     }
+
+    async function deleteData(film) {
+        Alert.alert("Deletar Filme", "Deseja excluir este Filme?", [
+            { text: "Cancelar", style: "cancel" },
+            {
+                text: "Sim",
+                style: "default",
+                onPress: async () => {
+                    await removeFilm("@films", film)
+                    closeModal()
+                },
+            },
+        ])
+    }
     return (
-        //TODO: arrumar teclado bugando a modal
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text style={styles.title}>{isEditable ? 'Atualizar Filme' : 'Adicionar Filme'}</Text>
-                <View style={styles.inputContainer}>
+                <Text style={styles.title}>
+                    {isEditable ? "Atualizar Filme" : "Adicionar Filme"}
+                </Text>
+                <ScrollView
+                    showsHorizontalScrollIndicator={true}
+                    contentContainerStyle={styles.scrollView}
+                >
                     <View>
                         <Text style={styles.labelInput}>Nome do Filme</Text>
                         <TextInput
@@ -85,24 +110,53 @@ export function ModalAddFilm({
                             onChangeText={(value) => setTime(value)}
                         />
                     </View>
-                </View>
+                </ScrollView>
                 <View style={styles.buttonsContainer}>
                     {isEditable ? (
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() =>
-                                updateData({ id, film, notes, rating, time })
-                            }
-                        >
-                            <Text
-                                style={[
-                                    styles.buttonText,
-                                    { backgroundColor: "green" },
-                                ]}
+                        <>
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={() =>
+                                    updateData({
+                                        id,
+                                        film,
+                                        notes,
+                                        rating,
+                                        time,
+                                    })
+                                }
                             >
-                                Salvar Alterações
-                            </Text>
-                        </TouchableOpacity>
+                                <Text
+                                    style={[
+                                        styles.buttonText,
+                                        { backgroundColor: "green" },
+                                    ]}
+                                >
+                                    Atualizar
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={() =>
+                                    deleteData({
+                                        id,
+                                        film,
+                                        notes,
+                                        rating,
+                                        time,
+                                    })
+                                }
+                            >
+                                <Text
+                                    style={[
+                                        styles.buttonText,
+                                        { backgroundColor: "red" },
+                                    ]}
+                                >
+                                    Deletar
+                                </Text>
+                            </TouchableOpacity>
+                        </>
                     ) : (
                         <TouchableOpacity
                             style={styles.button}
@@ -128,7 +182,7 @@ export function ModalAddFilm({
                         <Text
                             style={[
                                 styles.buttonText,
-                                { backgroundColor: "red" },
+                                { backgroundColor: "#091057" },
                             ]}
                         >
                             Fechar

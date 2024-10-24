@@ -12,7 +12,7 @@ export function HomeScreen() {
     const [selectedFilm, setSelectedFilm] = useState(null)
     const [modalEditable, setModalEditable] = useState(false)
     const [filmList, setFilmList] = useState([])
-    const { getFilm, removeFilm } = useStorage()
+    const { getFilm } = useStorage()
     const [updateFlag, setUpdateFlag] = useState(false)
 
     function addFilm() {
@@ -26,25 +26,6 @@ export function HomeScreen() {
         setModalVisible(true)
     }
 
-    async function deleteFilm(film) {
-        Alert.alert("Deletar Filme", "Deseja excluir este Filme?", [
-            { text: "Cancelar", style: "cancel" },
-            {
-                text: "Sim",
-                style: "default",
-                onPress: async () => {
-                    const films = await removeFilm("@films", film)
-                    if (films) {
-                        setFilmList(films)
-                    } else {
-                        setFilmList([])
-                    }
-                    setUpdateFlag((prev) => !prev)
-                },
-            },
-        ])
-    }
-
     useEffect(() => {
         async function loadFilms() {
             const films = await getFilm("@films")
@@ -53,17 +34,11 @@ export function HomeScreen() {
             }
         }
         loadFilms()
-        console.log({filmList })
+        console.log({ filmList })
     }, [updateFlag])
 
     function renderItem({ item }) {
-        return (
-            <Card
-                onLongPress={() => deleteFilm(item)}
-                onPress={() => editFilm(item)}
-                {...item}
-            />
-        )
+        return <Card onPress={() => editFilm(item)} {...item} />
     }
 
     return (
@@ -104,7 +79,7 @@ export function HomeScreen() {
                         setModalVisible(false)
                         setTimeout(() => {
                             setUpdateFlag((prev) => !prev)
-                        }, 300);
+                        }, 300)
                     }}
                     _id={selectedFilm?.id}
                     _film={selectedFilm?.film}

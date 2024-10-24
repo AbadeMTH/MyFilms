@@ -2,24 +2,27 @@ import { StyleSheet } from "react-native"
 
 export const stylesModalAddFilm = StyleSheet.create({
     container: {
-        flex: 1,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "rgba(24, 24, 24, 0.8)",
+        position: "relative",
+        flexGrow: 1,
+        width: '100%'
     },
     content: {
         width: "80%",
-        height: "60%",
+        maxHeight: "80%",
         backgroundColor: "#fff",
         borderRadius: 16,
         padding: 24,
-        justifyContent: "center",
+        justifyContent: "space-between",
         backgroundColor: "#024CAA",
+
     },
     title: {
         fontSize: 24,
         fontWeight: "bold",
-        marginBottom: 10,
+        marginBottom: 16,
         textAlign: "center",
         color: "#fff",
     },
@@ -39,6 +42,7 @@ export const stylesModalAddFilm = StyleSheet.create({
         paddingTop: 10, // Espaçamento superior
         paddingBottom: 10, // Espaçamento inferior
         color: "#fff",
+        marginBottom: 16,
     },
     inputContainer: {
         flex: 1,
@@ -49,6 +53,7 @@ export const stylesModalAddFilm = StyleSheet.create({
     button: {
         justifyContent: "center",
         alignItems: "center",
+        marginHorizontal: 10,
     },
     buttonText: {
         fontSize: 16,
@@ -61,8 +66,17 @@ export const stylesModalAddFilm = StyleSheet.create({
         padding: 10,
     },
     buttonsContainer: {
+        marginTop: 16,
+        paddingTop: 10,
         flexDirection: "row",
         justifyContent: "space-evenly",
     },
-
+    scrollView: {
+        backgroundColor: 'rgba(9, 16, 87, 0.5)',
+        borderRadius: 8,
+        paddingTop: 24,
+        padding: 16,
+        overflow: 'hidden',
+        width: '100%',
+    }
 })

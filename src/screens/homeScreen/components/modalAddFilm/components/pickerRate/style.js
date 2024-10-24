@@ -9,8 +9,12 @@ export const stylesPickerRate = StyleSheet.create({
         paddingHorizontal: 10,
         overflow: "hidden",
         opacity: 0.8,
+        marginBottom: 16,
+        justifyContent: "center",
     },
     picker: {
         color: "#fff",
+        height: 40,
+        
     },
 })
