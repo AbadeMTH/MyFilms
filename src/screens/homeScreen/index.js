@@ -34,7 +34,6 @@ export function HomeScreen() {
             }
         }
         loadFilms()
-        console.log({ filmList })
     }, [updateFlag])
 
     function renderItem({ item }) {
