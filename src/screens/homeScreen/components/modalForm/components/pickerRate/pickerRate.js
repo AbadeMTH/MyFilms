@@ -1,10 +1,9 @@
 import { Picker } from "@react-native-picker/picker"
-import React, { useState } from "react"
+import React from "react"
 import { View } from "react-native"
 import { stylesPickerRate as styles } from "./style"
 
-export function PickerRate({value, onChange}) {
-
+export function PickerRate({ value, onChange }) {
     return (
         <View style={styles.pickerContainer}>
             <Picker

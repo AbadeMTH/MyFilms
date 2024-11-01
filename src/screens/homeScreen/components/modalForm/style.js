@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-export const stylesModalAddFilm = StyleSheet.create({
+export const stylesModalForm = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",

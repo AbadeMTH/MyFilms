@@ -6,14 +6,9 @@ export const stylesHomeScreen = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#DBD3D3",
     },
-    filmsContainer: {
-        width: "90%",
-        justifyContent: "flex-start",
-        marginTop: 21,
-    },
-    filmsText: {
-        fontSize: 20,
-        fontWeight: "bold",
-        marginBottom: 3,
+    list: {
+        width: "100%",
+        paddingRight: 10,
+        paddingLeft: 10,
     },
 })
