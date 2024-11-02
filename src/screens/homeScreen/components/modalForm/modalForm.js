@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import {
     Alert,
+    Modal,
     ScrollView,
     Text,
     TextInput,
@@ -10,6 +11,7 @@ import {
 import { stylesModalForm as styles } from "./style"
 import { PickerRate } from "./components/pickerRate/pickerRate"
 import useStorage from "../../../../hooks/useStorage"
+import { PersonalizedAlert } from "./components/personalizedAlert/personalizedAlert"
 
 export function ModalForm({
     // Recebe os dados do filme caso seja para edição
@@ -26,8 +28,11 @@ export function ModalForm({
     const [notes, setNotes] = useState(_notes || "")
     const [rating, setRating] = useState(_rating || 0)
     const [time, setTime] = useState(_time || "")
+    const [filmData, setFilmData] = useState(null)
+    const [textAlert, setTextAlert] = useState("")
+    const [personalizedAlert, setPersonalizedAlert] = useState(false)
 
-    const { saveFilm, updateFilm, removeFilm } = useStorage() // Importando o hook de armazenamento
+    const { saveFilm, updateFilm } = useStorage() // Importando o hook de armazenamento
 
     async function saveData({ film, notes, rating, time }) {
         // Função que recebe os dados do filme e salva-os no storage
@@ -41,32 +46,23 @@ export function ModalForm({
         closeModal()
     }
 
-    async function updateData({ id, film, notes, rating, time }) {
-        // Função que recebe todos os dados de um filme especificado e atualiza no storage
-        updateFilm("@films", {
-            id: id,
-            film: film,
-            notes: notes,
-            rating: rating,
-            time: time,
-        })
-        closeModal()
+    function onAlert({ textAlert }) { // Função que recebe o texto do alerta personalizado e os dados do filme que devem ser atualizados ou deletados
+        setFilmData({
+            id,
+            film,
+            notes,
+            rating,
+            time,
+        }),
+            setPersonalizedAlert(true)
+        setTextAlert(textAlert)
     }
 
-    async function removeData(film) {
-        // Função que recebe um filme e remove do storage
-        Alert.alert("Deletar Filme", "Deseja excluir este Filme?", [
-            { text: "Cancelar", style: "cancel" },
-            {
-                text: "Sim",
-                style: "default",
-                onPress: async () => {
-                    await removeFilm("@films", film)
-                    closeModal()
-                },
-            },
-        ])
+    function closePersonalizedAlert() { // Função que fecha o alerta personalizado e limpa os dados do filme
+        setPersonalizedAlert(false)
+        setFilmData(null)
     }
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -128,30 +124,18 @@ export function ModalForm({
                         <>
                             <TouchableOpacity
                                 style={styles.button}
-                                onPress={() =>
-                                    updateData({
-                                        id,
-                                        film,
-                                        notes,
-                                        rating,
-                                        time,
-                                    })
-                                }
+                                onPress={() => onAlert({
+                                    textAlert: "Deseja atualizar este Filme?",
+                                })}
                             >
                                 <Text style={styles.buttonText}>Atualizar</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity
                                 style={styles.button}
-                                onPress={() =>
-                                    removeData({
-                                        id,
-                                        film,
-                                        notes,
-                                        rating,
-                                        time,
-                                    })
-                                }
+                                onPress={() => onAlert({
+                                    textAlert: "Deseja excluir este Filme?",
+                                })}
                             >
                                 <Text style={styles.buttonText}>Deletar</Text>
                             </TouchableOpacity>
@@ -174,6 +158,19 @@ export function ModalForm({
                         <Text style={styles.buttonText}>Fechar</Text>
                     </TouchableOpacity>
                 </View>
+
+                <Modal
+                    visible={personalizedAlert}
+                    animationType="fade"
+                    transparent={true}
+                >
+                    <PersonalizedAlert
+                        film={filmData}
+                        closeModal={closeModal}
+                        closePersonalizedAlert={closePersonalizedAlert}
+                        textAlert={textAlert}
+                    />
+                </Modal>
             </View>
         </View>
     )
