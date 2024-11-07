@@ -7,6 +7,7 @@ import { AddCard } from "../../components/addCard/addCard"
 import { ModalForm } from "./components/modalForm/modalForm"
 import useStorage from "../../hooks/useStorage"
 import { Title } from "./components/title/title"
+import { SearchBar } from "./components/searchBar/searchBar"
 
 export function HomeScreen() {
     const [modalVisible, setModalVisible] = useState(false)
@@ -15,7 +16,7 @@ export function HomeScreen() {
     const [filmList, setFilmList] = useState([])
     const [updateFlag, setUpdateFlag] = useState(false)
 
-    const { getFilm } = useStorage() // Importando o hook de armazenamento
+    const { getFilm, searchFilm } = useStorage() // Importando o hook de armazenamento
 
     useEffect(() => {
         //Carrega os filmes ao iniciar o aplicativo e também quando o updateFlag é alterado
@@ -24,6 +25,7 @@ export function HomeScreen() {
             if (films) {
                 //Caso falso, o padrão é um array vazio
                 setFilmList(films)
+                console.log(films)
             }
         }
         loadFilms()
@@ -42,6 +44,21 @@ export function HomeScreen() {
         setModalVisible(true)
     }
 
+    async function searchFilms(filmName) {
+        if (filmName) {
+            const films = await searchFilm("@films", filmName)
+            if (films.length != 0) {
+                setFilmList(films)
+            } else {
+                setFilmList([])
+            }
+        } else {
+            setTimeout(() => {
+                setUpdateFlag((prev) => !prev)
+            }, 300)
+        }
+    }
+
     function closeModal() {
         // Função que fecha a modal, tira todas as flags e atualiza a lista depois de 0.3s
         setSelectedFilm(null)
@@ -57,18 +74,29 @@ export function HomeScreen() {
         return <Card onPress={() => editFilm(item)} {...item} />
     }
 
+    function renderListHeader() {
+        return (
+            <>
+                <Header headerText="My Films" />
+                <View style={styles.searchContainer}>
+                    <SearchBar onPress={searchFilms} />
+                    <Title title="Filmes" />
+                </View>
+            </>
+        )
+    }
+
     return (
         <View style={styles.container}>
-            <Header headerText="My Films" />
-
-            <Title title="Filmes" />
-
             <FlatList
                 style={styles.list}
                 contentContainerStyle={{ alignItems: "center" }}
                 data={filmList}
                 keyExtractor={(item) => String(item.id)}
                 renderItem={renderItem}
+                ListHeaderComponent={renderListHeader}
+                refreshing={false}
+                onRefresh={() => setUpdateFlag((prev) => !prev)}
             />
 
             <AddCard onPress={addFilm} />

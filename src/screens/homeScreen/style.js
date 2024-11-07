@@ -8,7 +8,13 @@ export const stylesHomeScreen = StyleSheet.create({
     },
     list: {
         width: "100%",
-        paddingRight: 10,
-        paddingLeft: 10,
+    },
+    searchContainer: {
+        width: '100%',
+        justifyContent: "center",
+        alignItems: 'center',
+        paddingTop: 16,
+        paddingHorizontal: 20,
+        paddingBottom: 2,
     },
 })

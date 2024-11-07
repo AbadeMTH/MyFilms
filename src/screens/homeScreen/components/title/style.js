@@ -1,20 +1,21 @@
 import { StyleSheet } from "react-native"
 
 export const stylesTitle = StyleSheet.create({
-    filmsContainer: {
-        width: "90%",
-        justifyContent: "flex-start",
-        marginTop: 21,
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'red'
     },
     filmsText: {
         fontSize: 20,
         fontWeight: "bold",
-        marginBottom: 3,
+        textAlign: 'center'
     },
     line: {
-        width: "100%",
         backgroundColor: "#000",
-        height: 1,
-        marginBottom: 16,
+        height: 10,
+        marginHorizontal: 20,
+        marginTop: 10,  
+        width: 100
     },
 })

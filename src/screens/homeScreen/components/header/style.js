@@ -5,7 +5,6 @@ export const stylesHeader = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "#091057",
-        width: "100%",
         height: 75,
     },
     logo: {
