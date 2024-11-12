@@ -22,7 +22,6 @@ export function SearchBar({ onPress }) {
                 onChangeText={(value) => setFilmSearch(value)}
             />
             <TouchableOpacity
-                style={styles.buttonSearch}
                 onPress={() => {
                     removeSpaces(filmSearch)
                 }}

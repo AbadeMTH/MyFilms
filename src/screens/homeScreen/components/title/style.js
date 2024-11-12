@@ -1,21 +1,23 @@
-import { StyleSheet } from "react-native"
+import { Dimensions, StyleSheet } from "react-native"
+
+const windowWidth = Dimensions.get("window").width
 
 export const stylesTitle = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'red'
+        justifyContent: "center",
+        alignItems: "center",
+        width: windowWidth,
     },
     filmsText: {
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: "bold",
-        textAlign: 'center'
+        textAlign: "center",
+        marginTop: 15,
     },
     line: {
         backgroundColor: "#000",
-        height: 10,
-        marginHorizontal: 20,
-        marginTop: 10,  
-        width: 100
+        height: 2,
+        marginTop: 15,
+        width: windowWidth * 0.9,
     },
 })

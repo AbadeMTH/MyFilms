@@ -10,9 +10,9 @@ export const stylesHomeScreen = StyleSheet.create({
         width: "100%",
     },
     searchContainer: {
-        width: '100%',
+        width: "100%",
         justifyContent: "center",
-        alignItems: 'center',
+        alignItems: "center",
         paddingTop: 16,
         paddingHorizontal: 20,
         paddingBottom: 2,

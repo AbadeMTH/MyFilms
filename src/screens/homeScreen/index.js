@@ -75,6 +75,7 @@ export function HomeScreen() {
     }
 
     function renderListHeader() {
+        //Função de renderiza os itens acima da lista
         return (
             <>
                 <Header headerText="My Films" />
