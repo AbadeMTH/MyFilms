@@ -10,7 +10,7 @@ export const stylesHeader = StyleSheet.create({
     logo: {
         width: 50,
         height: 50,
-        marginLeft: 25,
+        marginLeft: 40,
         marginTop: 13,
         marginBottom: 12,
     },

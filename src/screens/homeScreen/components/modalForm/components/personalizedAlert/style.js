@@ -30,7 +30,6 @@ export const stylesPersonalizedAlert = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginHorizontal: 10,
-        width: '30%'
     },
     buttonText: {
         fontSize: 16,
