@@ -25,7 +25,6 @@ export function HomeScreen() {
             if (films) {
                 //Caso falso, o padrão é um array vazio
                 setFilmList(films)
-                console.log(films)
             }
         }
         loadFilms()

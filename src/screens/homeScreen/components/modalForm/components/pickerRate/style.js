@@ -14,7 +14,6 @@ export const stylesPickerRate = StyleSheet.create({
     },
     picker: {
         color: "#fff",
-        height: 40,
-        
+
     },
 })
